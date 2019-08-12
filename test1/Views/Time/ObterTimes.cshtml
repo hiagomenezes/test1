@@ -1,0 +1,47 @@
+﻿@model IEnumerable<test1.Models.Times>
+
+<p>
+    @Html.ActionLink("Time", "ObterTime")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cores)
+        </th>
+        <th>
+            Açoes
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeId) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cores)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "EditarTime", new {  id=item.TimeId }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id=item.TimeId })
+           
+        </td>
+    </tr>
+}
+
+</table>

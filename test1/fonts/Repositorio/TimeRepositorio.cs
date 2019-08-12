@@ -51,11 +51,11 @@ namespace test1.fonts.Repositorio
         public List<Times> ObterTimes()
         {
             Connection();
-            List<Times> TimesLIst = new List<Times>();
+            List<Times> TimesList = new List<Times>();
 
             using (SqlCommand command = new SqlCommand("ObterTimes", _con))
             {
-                command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 _con.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -64,18 +64,18 @@ namespace test1.fonts.Repositorio
                 {
                     Times times = new Times()
                     {
-                        TimeId = Convert.ToInt32(reader["Time"]),
+                        TimeId = Convert.ToInt32(reader["TimeId"]),
                         Time = Convert.ToString(reader["Time"]),
                         Estado = Convert.ToString(reader["Estado"]),
-                        Cores = Convert.ToString(reader["Cores"])
+                        Cores = Convert.ToString(reader["Cores"]),
                     };
 
-                    TimesLIst.Add(times);
+                    TimesList.Add(times);
 
                 }
                 _con.Close();
 
-                return TimesLIst;
+                return TimesList;
             }
 
         }
@@ -115,9 +115,9 @@ namespace test1.fonts.Repositorio
 
             int i;
 
-            using (SqlCommand command = new SqlCommand("AtualizarTime", _con))
+            using (SqlCommand command = new SqlCommand("ExcluirTimePorId", _con))
             {
-                command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@TimeId", id);
 
 
@@ -134,10 +134,9 @@ namespace test1.fonts.Repositorio
             {
                 return true;
             }
-            else
-            {
+         
                 return false;
-            }
+    
 
         }
     }
